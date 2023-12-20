@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import styled from "styled-components";
+import { Preloader } from "./preLoader";
 const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
@@ -22,15 +23,18 @@ const Container = styled.div`
 `;
 const AppLayout = () => {
   return (
-    <StyledAppLayout>
-      <Header />
-      <SideBar />
-      <Main>
-        <Container>
-          <Outlet />
-        </Container>
-      </Main>
-    </StyledAppLayout>
+    <>
+      <Preloader />
+      <StyledAppLayout>
+        <Header />
+        <SideBar />
+        <Main>
+          <Container>
+            <Outlet />
+          </Container>
+        </Main>
+      </StyledAppLayout>
+    </>
   );
 };
 export default AppLayout;

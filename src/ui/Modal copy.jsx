@@ -1,7 +1,5 @@
-import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -51,38 +49,15 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
-const ModalContext = createContext();
-function Modal({ children }) {
-  const [openName, setOpenName] = useState("");
-  const close = () => setOpenName("");
-  const open = setOpenName;
-  return (
-    <ModalContext.Provider value={{ open, close, openName }}>
-      {children}
-    </ModalContext.Provider>
-  );
-}
 
-const Open = ({ children, opens: opensWindowName }) => {
-  const { open } = useContext(ModalContext);
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
-};
-const Window = ({ children, name }) => {
-  const { openName, close } = useContext(ModalContext);
-  const ref = useOutsideClick(close);
-  if (name !== openName) return;
+export const Modal = ({ children, onCloseModel }) => {
   return createPortal(
     <Overlay>
-      <StyledModal ref={ref}>
-        <Button onClick={close}>❌</Button>
-        <div>{cloneElement(children, { onCloseModel: close })}</div>
+      <StyledModal>
+        <Button onClick={onCloseModel}>❌</Button>
+        <div>{children}</div>
       </StyledModal>
     </Overlay>,
     document.body
   );
 };
-
-Modal.Open = Open;
-Modal.Window = Window;
-
-export default Modal;

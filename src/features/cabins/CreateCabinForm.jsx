@@ -8,7 +8,7 @@ import { FormRow } from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 import { useUpdateCabin } from "./useUpdateCabin";
 
-function CreateCabinForm({ setShowForm, cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
   const { id: editID, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editID);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -30,7 +30,10 @@ function CreateCabinForm({ setShowForm, cabinToEdit = {} }) {
       createCabin(
         { ...data, image: image },
         {
-          onSuccess: (data) => reset(),
+          onSuccess: (data) => {
+            reset();
+            onCloseModel?.();
+          },
         }
       );
   };
@@ -39,7 +42,10 @@ function CreateCabinForm({ setShowForm, cabinToEdit = {} }) {
     // console.log(error);
   };
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModel ? "modal" : "regular"}
+    >
       <FormRow label="name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -119,7 +125,11 @@ function CreateCabinForm({ setShowForm, cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModel?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>

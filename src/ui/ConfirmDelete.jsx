@@ -19,8 +19,8 @@ const StyledConfirmDelete = styled.div`
     gap: 1.2rem;
   }
 `;
-
-function ConfirmDelete({ resourceName, onConfirm, disabled }) {
+//onCloseMOdal prop has been sen to this by cloneElememnt function
+function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModel }) {
   return (
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>
@@ -30,10 +30,14 @@ function ConfirmDelete({ resourceName, onConfirm, disabled }) {
       </p>
 
       <div>
-        <Button variation="secondary" disabled={disabled}>
+        <Button
+          variation="secondary"
+          disabled={disabled}
+          onClick={onCloseModel}
+        >
           Cancel
         </Button>
-        <Button variation="danger" disabled={disabled}>
+        <Button variation="danger" disabled={disabled} onClick={onConfirm}>
           Delete
         </Button>
       </div>

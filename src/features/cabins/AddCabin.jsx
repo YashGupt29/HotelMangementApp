@@ -7,20 +7,22 @@ import CabinTable from "./CabinTable";
 //using Compound Component Pattern for reusability purpose
 export default function AddCabin() {
   return (
-    <Modal>
-      <Modal.Open opens="cabin-form">
-        <Button>Add new cabin</Button>
-      </Modal.Open>
-      <Modal.Window name="cabin-form">
-        <CreateCabinForm />
-      </Modal.Window>
-      {/* <Modal.Open opens="table">
+    <div>
+      <Modal>
+        <Modal.Open opens="cabin-form">
+          <Button>Add new cabin</Button>
+        </Modal.Open>
+        <Modal.Window name="cabin-form">
+          <CreateCabinForm />
+        </Modal.Window>
+        {/* <Modal.Open opens="table">
         <Button>Show Table</Button>
-      </Modal.Open>
-      <Modal.Window name="table">
+        </Modal.Open>
+        <Modal.Window name="table">
         <CabinTable />
       </Modal.Window> */}
-    </Modal>
+      </Modal>
+    </div>
   );
 }
 

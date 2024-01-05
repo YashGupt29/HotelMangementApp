@@ -85,7 +85,7 @@ function Row({ children }) {
   );
 }
 function Body({ data, render }) {
-  if (!data.length) return <Empty>No Data to show at this moment</Empty>;
+  if (!data?.length) return <Empty>No Data to show at this moment</Empty>;
   return <StyledBody>{data.map(render)}</StyledBody>;
 }
 Table.Header = Header;

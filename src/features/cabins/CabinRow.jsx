@@ -9,6 +9,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import { createEditCabins } from "../../services/apiCabins";
 // const TableRow = styled.div`
 //   display: grid;
 //   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -58,7 +59,16 @@ function CabinRow({ cabin }) {
     description,
     image,
   } = cabin;
-  const handleDuplicate = () => {};
+  const handleDuplicate = () => {
+    createEditCabins({
+      name: `Copy Of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      description,
+      image,
+    });
+  };
   return (
     <Table columns=" 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
       <Table.Row role="row">

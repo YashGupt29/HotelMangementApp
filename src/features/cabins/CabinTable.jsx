@@ -6,15 +6,9 @@ import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
 import React from "react";
+import { useCabins } from "./useCabins";
 function CabinTable() {
-  const {
-    isLoading,
-    data: cabins,
-    error,
-  } = useQuery({
-    queryKey: ["cabins"],
-    queryFn: getCabins,
-  });
+  const { isLoading, cabins, error } = useCabins();
   const [searchParams] = useSearchParams();
   if (isLoading) return <Spinner />;
   //Filter
@@ -36,8 +30,6 @@ function CabinTable() {
   const sortedCabins = filteredCabins.sort(
     (a, b) => (a[field] - b[field]) * modifer
   );
-
-  console.log("it", modifer, sortedCabins);
 
   return (
     <Menus>

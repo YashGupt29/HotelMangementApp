@@ -16,6 +16,8 @@ import GlobalStyle from "./styles/GlobalStyle";
 import AppLayout from "./ui/AppLayout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Booking from "./pages/Booking";
+import CheckIn from "./pages/Checkin";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "account",
         element: <Account />,
+      },
+      {
+        path: "/booking/:bookingId",
+        element: <Booking />,
+      },
+      {
+        path: "/checkin/:bookingId",
+        element: <CheckIn />,
       },
     ],
   },

@@ -12,10 +12,11 @@ export async function getBookings({ filter, sortBy, page }) {
 
   // if (filter !== null) query = query["eq"](filter.field, filter.value);
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
-  if (sortBy)
+  if (sortBy) {
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === "asc",
     });
+  }
 
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
@@ -39,7 +40,7 @@ export async function getBooking(id) {
     .single();
 
   if (error) {
-    console.error(error);
+    console.log(error);
     throw new Error("Booking not found");
   }
 

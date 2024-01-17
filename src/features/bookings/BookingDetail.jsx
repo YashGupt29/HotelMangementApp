@@ -13,6 +13,10 @@ import { useBooking } from "./useBooking";
 import Spinner from "../../ui/Spinner";
 import { HiArrowUpOnSquare } from "react-icons/hi2";
 import useCheckout from "../check-in-out/useCheckout";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import { MdDelete } from "react-icons/md";
+import useDeleteBooking from "./useDeleteBooking";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -26,6 +30,7 @@ function BookingDetail() {
   const moveBack = useMoveBack();
   const { status, id: bookingId } = booking;
   const { checkout, isCheckingOut } = useCheckout();
+  const { isDeleting, deleteBookin } = useDeleteBooking();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -63,6 +68,25 @@ function BookingDetail() {
             Check Out
           </Button>
         )}
+        <Modal>
+          <Modal.Open opens="booking-delete">
+            <Button icon={<MdDelete />} variation="danger">
+              Delete booking
+            </Button>
+          </Modal.Open>
+          <Modal.Window name="booking-delete">
+            <ConfirmDelete
+              resourceName="booking"
+              onConfirm={() => {
+                deleteBookin(bookingId, {
+                  onSettled: () => navigate(-1),
+                });
+                // navigate(-1);
+              }}
+              disabled={isDeleting}
+            />
+          </Modal.Window>
+        </Modal>
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>

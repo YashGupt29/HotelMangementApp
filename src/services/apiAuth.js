@@ -9,7 +9,6 @@ export async function loginApi({ email, password }) {
   if (error) {
     throw new Error(error.message);
   }
-  console.log(data);
   return data;
 }
 export async function getCurrentUser() {

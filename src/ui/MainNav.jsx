@@ -79,12 +79,6 @@ const MainNav = () => {
           <HiOutlineUsers />
           <span>Users</span>
         </StyledNavLink>
-        <li>
-          <StyledNavLink to="/settings">
-            <HiOutlineCog />
-            <span>Settings</span>
-          </StyledNavLink>
-        </li>
       </NavList>
     </nav>
   );

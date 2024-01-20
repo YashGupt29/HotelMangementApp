@@ -11,7 +11,6 @@ import Users from "./pages/Users";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import PageNotFound from "./pages/PageNotFound";
-import Settings from "./pages/Settings";
 import GlobalStyle from "./styles/GlobalStyle";
 import AppLayout from "./ui/AppLayout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -47,10 +46,6 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <Users />,
-      },
-      {
-        path: "settings",
-        element: <Settings />,
       },
       {
         path: "account",

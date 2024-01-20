@@ -18,7 +18,6 @@ const SideBar = () => {
     <StyledSidebar>
       <Logo />
       <MainNav />
-      {/* <Uploader /> */}
     </StyledSidebar>
   );
 };

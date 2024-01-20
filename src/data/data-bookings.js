@@ -15,6 +15,7 @@ export const bookings = [
     cabinID: 1,
     guestID: 2,
     hasBreakFast: true,
+    extrasPrice: 40,
     observations:
       "I have a gluten allergy and would like to request a gluten-free breakfast.",
     isPaid: false,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isFuture, isPast, isToday } from "date-fns";
 import supabase from "../services/supabase";
 import Button from "../ui/Button";
@@ -117,31 +117,18 @@ function Uploader() {
     await createBookings();
     setIsLoading(false);
   }
+  useEffect(() => {
+    const uploadData = async () => {
+      await uploadAll();
+      await uploadBookings();
+    };
+    uploadData();
+    const intervalId = setInterval(uploadData, 24 * 60 * 60 * 1000);
 
-  return (
-    <div
-      style={{
-        marginTop: "auto",
-        backgroundColor: "#e0e7ff",
-        padding: "8px",
-        borderRadius: "5px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-      }}
-    >
-      <h3>SAMPLE DATA</h3>
+    return () => clearInterval(intervalId);
+  }, []);
 
-      <Button onClick={uploadAll} disabled={isLoading}>
-        Upload ALL
-      </Button>
-
-      <Button onClick={uploadBookings} disabled={isLoading}>
-        Upload bookings ONLY
-      </Button>
-    </div>
-  );
+  return;
 }
 
 export default Uploader;

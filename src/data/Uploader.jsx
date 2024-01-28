@@ -125,10 +125,9 @@ function Uploader() {
 
     const runUploadData = () => {
       uploadData();
-      setInterval(uploadData, 24 * 60 * 60 * 1000);
+      setInterval(uploadData, 24 * 60 * 1000);
     };
 
-    // Run the function after 1 day
     const timeoutId = setTimeout(runUploadData, 24 * 60 * 60 * 1000);
 
     // Clear timeout on component unmount to avoid memory leaks
